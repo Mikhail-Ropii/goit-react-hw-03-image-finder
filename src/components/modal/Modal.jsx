@@ -19,10 +19,16 @@ export class Modal extends Component {
     }
   };
 
+  hadleOverlayClick = e => {
+    if (e.target === e.currentTarget) {
+      this.props.onModalClose();
+    }
+  };
+
   render() {
     const { largeImageURL, alt } = this.props;
     return createPortal(
-      <div className="Overlay">
+      <div className="Overlay" onClick={this.hadleOverlayClick}>
         <div className="Modal">
           <img src={largeImageURL} alt={alt} />
         </div>
