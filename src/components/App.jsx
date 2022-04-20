@@ -13,6 +13,7 @@ export class App extends Component {
     searchValue: '',
     pictures: [],
     page: 1,
+    isModalOpen: false,
     isLoading: false,
     totalResults: null,
   };

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
 import '../styles.css';
+import propTypes from 'prop-types';
 
 const popupRoot = document.querySelector('#popup-root');
 
@@ -37,3 +38,8 @@ export class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  largeImageURL: propTypes.string,
+  alt: propTypes.string,
+};

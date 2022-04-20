@@ -1,4 +1,4 @@
-import ImageGalleryItem from 'components/imageGalleryItem/ImageGalleryItem';
+import { ImageGalleryItem } from 'components/imageGalleryItem/ImageGalleryItem';
 import '../styles.css';
 
 export const ImageGallery = ({ resultSearch }) => {
