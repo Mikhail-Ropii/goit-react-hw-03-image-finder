@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import axios from 'axios';
-import ImageGallery from './imageGallery/ImageGallery';
+import { ImageGallery } from './imageGallery/ImageGallery';
 import { Searchbar } from './searchbar/Searchbar';
 import { Button } from './button/Button';
 import { Loader } from './loader/Loader';
@@ -14,6 +14,7 @@ export class App extends Component {
     pictures: [],
     page: 1,
     isLoading: false,
+    totalResults: null,
   };
 
   componentDidUpdate(_, prevState) {
@@ -27,6 +28,7 @@ export class App extends Component {
         .then(res => {
           this.setState({
             pictures: [...pictures, ...res.data.hits],
+            totalResults: res.data.totalHits,
             isLoading: false,
           });
           if (res.data.hits.length === 0) {
@@ -54,12 +56,14 @@ export class App extends Component {
   };
 
   render() {
-    const { pictures, isLoading } = this.state;
+    const { pictures, isLoading, totalResults } = this.state;
     return (
       <div>
         <Searchbar onSubmit={this.handleFormSubmit} />
         <ImageGallery resultSearch={pictures} />
-        {pictures.length !== 0 && <Button onClick={this.onLoadButtonClick} />}
+        {pictures.length !== 0 && totalResults !== pictures.length && (
+          <Button onClick={this.onLoadButtonClick} />
+        )}
         {isLoading && <Loader />}
         <ToastContainer />
       </div>
