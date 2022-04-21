@@ -77,7 +77,7 @@ export class App extends Component {
         {isLoading && <Loader />}
         {modalImage !== '' && (
           <Modal onModalClose={this.onModalClose}>
-            <img src={modalImage} />
+            <img src={modalImage} alt="" />
           </Modal>
         )}
 
