@@ -1,7 +1,7 @@
-import ImageGalleryItem from 'components/imageGalleryItem/ImageGalleryItem';
+import { ImageGalleryItem } from 'components/imageGalleryItem/ImageGalleryItem';
 import '../styles.css';
 
-export const ImageGallery = ({ resultSearch }) => {
+export const ImageGallery = ({ resultSearch, onModal }) => {
   return (
     <ul className="ImageGallery">
       {resultSearch.map(({ id, webformatURL, tags, largeImageURL }) => (
@@ -10,6 +10,7 @@ export const ImageGallery = ({ resultSearch }) => {
             imageUrl={webformatURL}
             alt={tags}
             largeImageURL={largeImageURL}
+            onModal={onModal}
           />
         </li>
       ))}

@@ -4,6 +4,7 @@ import { ImageGallery } from './imageGallery/ImageGallery';
 import { Searchbar } from './searchbar/Searchbar';
 import { Button } from './button/Button';
 import { Loader } from './loader/Loader';
+import { Modal } from 'components/modal/Modal';
 import { animateScroll as scroll } from 'react-scroll';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,7 +14,7 @@ export class App extends Component {
     searchValue: '',
     pictures: [],
     page: 1,
-    isModalOpen: false,
+    modalImage: '',
     isLoading: false,
     totalResults: null,
   };
@@ -56,16 +57,30 @@ export class App extends Component {
     scroll.scrollToBottom();
   };
 
+  onModal = modalImage => {
+    this.setState({ modalImage });
+  };
+
+  onModalClose = () => {
+    this.setState({ modalImage: '' });
+  };
+
   render() {
-    const { pictures, isLoading, totalResults } = this.state;
+    const { pictures, isLoading, totalResults, modalImage } = this.state;
     return (
       <div>
         <Searchbar onSubmit={this.handleFormSubmit} />
-        <ImageGallery resultSearch={pictures} />
+        <ImageGallery resultSearch={pictures} onModal={this.onModal} />
         {pictures.length !== 0 && totalResults !== pictures.length && (
           <Button onClick={this.onLoadButtonClick} />
         )}
         {isLoading && <Loader />}
+        {modalImage !== '' && (
+          <Modal onModalClose={this.onModalClose}>
+            <img src={modalImage} />
+          </Modal>
+        )}
+
         <ToastContainer />
       </div>
     );
