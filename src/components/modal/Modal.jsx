@@ -27,12 +27,9 @@ export class Modal extends Component {
   };
 
   render() {
-    const { largeImageURL, alt } = this.props;
     return createPortal(
       <div className="Overlay" onClick={this.hadleOverlayClick}>
-        <div className="Modal">
-          <img src={largeImageURL} alt={alt} />
-        </div>
+        <div className="Modal">{this.props.children}</div>
       </div>,
       popupRoot
     );

@@ -21,11 +21,9 @@ export default class ImageGalleryItem extends Component {
           alt={alt}
         />
         {this.state.isModalOpen && (
-          <Modal
-            largeImageURL={largeImageURL}
-            alt={alt}
-            onModalClose={this.onModalToggle}
-          />
+          <Modal onModalClose={this.onModalToggle}>
+            <img src={largeImageURL} alt={alt} />
+          </Modal>
         )}
       </>
     );
